@@ -27,13 +27,23 @@ import rootSaga from './redux/sagas/_root.saga';
 
 // TODO - add saga middleware
 const sagaMiddleware = createSagaMiddleware();
+let middlewareList = [
+  sagaMiddleware,
+  logger,
+];
+
+if (process.env.NODE_ENV === 'production') {
+  middlewareList = [
+    sagaMiddleware,
+  ];
+}
 
 // This is creating the store
 // the store is a big JavaScript Object that holds all of our reducers
 const storeInstance = createStore(
     // This function registers all of our reducers
     rootReducer,
-    applyMiddleware(sagaMiddleware, logger),
+    applyMiddleware(...middlewareList),
 );
 
 // TODO - run sagas
