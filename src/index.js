@@ -9,24 +9,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, takeLatest, put } from 'redux-saga/effects';
 import rootReducer from './redux/reducers/_root.reducer';
 import rootSaga from './redux/sagas/_root.saga';
 
-//
-// SAGAS
-// ------------------------------
-
-
-
-
-
-
-
-
-
-// TODO - add saga middleware
+// creating saga middleware
 const sagaMiddleware = createSagaMiddleware();
+
+// creating a list of middleware to use with redux
 let middlewareList = [
   sagaMiddleware,
   logger,
@@ -41,9 +30,9 @@ if (process.env.NODE_ENV === 'production') {
 // This is creating the store
 // the store is a big JavaScript Object that holds all of our reducers
 const storeInstance = createStore(
-    // This function registers all of our reducers
-    rootReducer,
-    applyMiddleware(...middlewareList),
+  // This function registers all of our reducers
+  rootReducer,
+  applyMiddleware(...middlewareList),
 );
 
 // TODO - run sagas
