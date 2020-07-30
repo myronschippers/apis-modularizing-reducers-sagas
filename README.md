@@ -1,13 +1,16 @@
-# redux-saga-starter
-`npm install`
+# Redux, Modularizing Reducers & Sagas
 
-This is the starting repo to accompany 06-03b_redux-saga-intro.md
+## Description
 
 This is a 3/4 stack app (no DB)
 `npm run client` and `npm run server`
 
-Users can input an element on the DOM, hit the submit button. The entry gets saved in an array on the server.
+This is simple example of how you would modularize your redux reducers and sagas. There are other ways to do this but this is one consistent approach.
 
-This is using just React-Redux as written. Lecture converts it to use Redux-Saga for the async GET and POST calls.
-The boilerplate setup for redux-saga is already done -- see `index.js`
+## Installation
+
+- `npm install`
+- `npm run server`
+- from a separate terminal
+  - `npm run client`
 
