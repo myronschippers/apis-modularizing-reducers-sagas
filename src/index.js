@@ -17,23 +17,23 @@ import { takeEvery, takeLatest, put } from 'redux-saga/effects';
 // - reducer is a function that runs every time an action is dispatched
 // ------------------------------
 
-// const firstReducer = (state = 0, action) => {
-//     if (action.type === 'BUTTON_ONE') {
-//         console.log('firstReducer state', state);
-//         console.log('Button 1 was clicked!');
-//         return state + 1;
-//     }
-//     return state;
-// };
+const firstReducer = (state = 0, action) => {
+    if (action.type === 'BUTTON_ONE') {
+        console.log('firstReducer state', state);
+        console.log('Button 1 was clicked!');
+        return state + 1;
+    }
+    return state;
+};
 
-// const secondReducer = (state = 100, action) => {
-//     if (action.type === 'BUTTON_TWO') {
-//         console.log('secondReducer state', state);
-//         console.log('Button 2 was clicked!');
-//         return state - 1;
-//     }
-//     return state;
-// };
+const secondReducer = (state = 100, action) => {
+    if (action.type === 'BUTTON_TWO') {
+        console.log('secondReducer state', state);
+        console.log('Button 2 was clicked!');
+        return state - 1;
+    }
+    return state;
+};
 
 const elementListReducer = (state = [], action) => {
     switch (action.type) {
@@ -95,8 +95,8 @@ const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
     // This function registers all of our reducers
     combineReducers({
-        // firstReducer,
-        // secondReducer,
+        firstReducer,
+        secondReducer,
         elementListReducer,
     }),
     applyMiddleware(sagaMiddleware, logger),
