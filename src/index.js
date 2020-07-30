@@ -6,45 +6,12 @@ import axios from 'axios';
 
 import './index.css';
 
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, takeLatest, put } from 'redux-saga/effects';
-
-//
-// REDUCERS
-// - reducer is a function that runs every time an action is dispatched
-// ------------------------------
-
-const firstReducer = (state = 0, action) => {
-    if (action.type === 'BUTTON_ONE') {
-        console.log('firstReducer state', state);
-        console.log('Button 1 was clicked!');
-        return state + 1;
-    }
-    return state;
-};
-
-const secondReducer = (state = 100, action) => {
-    if (action.type === 'BUTTON_TWO') {
-        console.log('secondReducer state', state);
-        console.log('Button 2 was clicked!');
-        return state - 1;
-    }
-    return state;
-};
-
-const elementListReducer = (state = [], action) => {
-    switch (action.type) {
-      case 'SET_ELEMENTS':
-        return action.payload;
-      case 'CLEAR_ELEMENTS':
-        return [];
-      default:
-        return state;
-    }
-};
+import rootReducer from './redux/reducers/_root.reducer';
 
 //
 // SAGAS
@@ -94,11 +61,7 @@ const sagaMiddleware = createSagaMiddleware();
 // the store is a big JavaScript Object that holds all of our reducers
 const storeInstance = createStore(
     // This function registers all of our reducers
-    combineReducers({
-        firstReducer,
-        secondReducer,
-        elementListReducer,
-    }),
+    rootReducer,
     applyMiddleware(sagaMiddleware, logger),
 );
 
